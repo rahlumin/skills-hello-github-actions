@@ -4,12 +4,22 @@ on:
        types: [opened]
 permissions: #gives the workflow permission to write to pull requests.
    pull-requests: write
-#add jobs to workflow
+#step 2: add jobs to workflow
 jobs:
    # we will add a "build" job. We will specify ubuntu-latest 
    # as the fastest and cheapest job runner available
    build:
        name: Post welcome comment
        runs-on: ubuntu-latest
+       #step 3 : add steps to this job
+       steps:
+          #In our action, we post a comment on the pull request
+          # using a bash script and GitHub CLI.
+          - run: gh pr comment $PR_URL --body "Welcome to the repository!"
+            env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              PR_URL: ${{ github.event.pull_request.html_url }}
+
+              
        
 
