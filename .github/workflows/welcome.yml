@@ -2,5 +2,14 @@ name: Post Welcome Comment
 on: 
    pull_request:
        types: [opened]
-permissions:
+permissions: #gives the workflow permission to write to pull requests.
    pull-requests: write
+#add jobs to workflow
+jobs:
+   # we will add a "build" job. We will specify ubuntu-latest 
+   # as the fastest and cheapest job runner available
+   build:
+       name: Post welcome comment
+       runs-on: ubuntu-latest
+       
+
